@@ -1,0 +1,22 @@
+name: erllambda_dummy
+
+on:
+  release:
+    types: [created]
+
+jobs:
+
+  build_release:
+
+    runs-on: ubuntu-latest
+
+    container:
+      image: erlang:22.0.7
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Compile
+      run: make compile
+    - name: Run tests
+      run: make test
+
