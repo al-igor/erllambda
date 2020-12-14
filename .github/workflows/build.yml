@@ -1,4 +1,4 @@
-name: erllambda_dummy
+name: erllambda_dummy_build
 
 on:
   push:
