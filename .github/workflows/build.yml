@@ -24,8 +24,8 @@ jobs:
     - name: Run tests
       run: make test
    
-    - name: Fail trigger
-      run: exit13 # full stop
+      #    - name: Fail trigger
+      #run: exit13 # full stop
    
     - name: Microsoft Teams Notification
       uses: dhollerbach/github-action-send-message-to-ms-teams@1.0.10
