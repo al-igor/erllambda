@@ -5,7 +5,7 @@ on:
     - cron: '*/5 * * * *'
 
 jobs:
-  build:
+  nightly_build:
 
     runs-on: ubuntu-latest
 
