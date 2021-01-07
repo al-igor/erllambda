@@ -32,5 +32,5 @@ jobs:
       if: always()
       with:
         webhook: ${{ secrets.TEAMS_WEBHOOK }}
-        message: ' Job ${{ github.workflow }} | ${{ github.run_id }} | ${{ github.job }} | ${{ github.run_number }}: ${{ job.status }} Notification: ${{github.event.pusher.name}} have pushed something'
+        message: ' Job ${{ github.workflow }} | ${{ github.run_number }}: ${{ job.status }} Notification: ${{github.event.pusher.name}} have pushed something'
 
