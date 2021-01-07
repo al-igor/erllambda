@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 
 env:
-  GITHUB_WORKFLOW_URL: https://github:com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
+  GITHUB_WORKFLOW_URL: 'https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}'
 
 jobs:
 
@@ -35,5 +35,5 @@ jobs:
       if: always()
       with:
         webhook: ${{ secrets.TEAMS_WEBHOOK }}
-        message: ' Job ${{ github.workflow }} | ${{ github.run_number }}: ${{ job.status }} Notification: ${{github.event.pusher.name}} have pushed something. ${{ env.GITHUB_WORKFLOW_URL }}'
+        message: ' Job ${{ github.workflow }} | ${{ github.run_number }}: ${{ job.status }} Notification: ${{github.event.pusher.name}} have pushed something. ${{env.GITHUB_WORKFLOW_URL}}'
 
