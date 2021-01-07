@@ -31,6 +31,6 @@ jobs:
       uses: dhollerbach/github-action-send-message-to-ms-teams@1.0.10
       if: always()
       with:
-        webhook: 'https://outlook.office.com/webhook/1a0c4586-0e24-4db7-8724-f86cc0517ac6@04151827-cb2a-4231-9c24-1ef5ffc408eb/IncomingWebhook/5610c44f6cfa4fad9a1c99555b12e501/e7013d08-62f5-4d2e-9f7f-106117af144b'
-        message: 'Notification! ${{ job.status }}'
+        webhook: ${{ secrets.TEAMS_WEBHOOK }}
+        message: ' ${{ job.status }} Notification: ${{github.event.pusher.name}} have pushed something.'
 
