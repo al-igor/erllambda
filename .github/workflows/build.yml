@@ -39,8 +39,16 @@ jobs:
         role-duration-seconds: 1200
         role-skip-session-tagging: true
 
-    - name: Get all SSM parameters
-      run: aws ssm describe-parameters
+    - name: aws-ssm-to-env
+      uses: bomb-on/aws-ssm-to-env@master
+      #env:
+        #AWS_REGION: us-east-1
+        #AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        #AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      with:
+        ssm_parameter_list: |
+         /ci_params/_global/MYVAR2,
+         /alertlogic/ci-test-repo/HELLO_WORLD
    
       #    - name: Fail trigger
       #run: exit13 # full stop
