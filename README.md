@@ -1,6 +1,7 @@
 erllambda
 =========
-
+![GH Actions erllambda_dummy_build worfklow status](https://github.com/al-igor/erllambda/workflows/erllambda_dummy_build/badge.svg)
+=========
 Enable AWS Lambda functions to be written in Erlang
 
 ![logo](doc/pics/erllambda_logo_small.png)
