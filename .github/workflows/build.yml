@@ -49,7 +49,7 @@ jobs:
         ssm_parameter_list: |
          /ci_params/_global/MYVAR2,
          /alertlogic/ci-test-repo/HELLO_WORLD
-       prefix: ALGA_ 
+        prefix: ALGA_ 
  
     - name: Printenv
       run: printenv | grep ALGA
