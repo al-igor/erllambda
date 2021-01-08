@@ -45,13 +45,12 @@ jobs:
         ssm_parameter_list: |
          /ci_params/_global/MYVAR2,
          /alertlogic/ci-test-repo/HELLO_WORLD,
-         /ci/env_vars/1234/access_key_id
         prefix: ALGA_ 
   
     - uses: Bardavon-Health/actions-aws-ssm-params-to-env@v1.2
       with:
         ssm-path: /ci/env_vars/1234/access_key_id # "mynewpassword"
-        prefix: ALPGA_ # optional
+        prefix: ALGA_ # optional
         decryption: true # optional, default false
  
     - name: Printenv
