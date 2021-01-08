@@ -41,16 +41,18 @@ jobs:
 
     - name: aws-ssm-to-env
       uses: bomb-on/aws-ssm-to-env@master
-      #env:
-        #AWS_REGION: us-east-1
-        #AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        #AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       with:
         ssm_parameter_list: |
          /ci_params/_global/MYVAR2,
          /alertlogic/ci-test-repo/HELLO_WORLD,
          /ci/env_vars/1234/access_key_id
         prefix: ALGA_ 
+  
+    - uses: Bardavon-Health/actions-aws-ssm-params-to-env@v1.2
+      with:
+        ssm-path: /ci/env_vars/1234/access_key_id # "mynewpassword"
+        prefix: ALPGA_ # optional
+        decryption: true # optional, default false
  
     - name: Printenv
       run: printenv | grep ALGA
