@@ -49,6 +49,9 @@ jobs:
         ssm_parameter_list: |
          /ci_params/_global/MYVAR2,
          /alertlogic/ci-test-repo/HELLO_WORLD
+ 
+    - name: Printenv
+      run: printenv
    
       #    - name: Fail trigger
       #run: exit13 # full stop
