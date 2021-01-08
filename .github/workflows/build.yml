@@ -23,6 +23,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
    
+    - name: Get all SSM parameters
+      run: aws ssm describe-parameters
+   
     - name: Compile
       run: make compile
    
