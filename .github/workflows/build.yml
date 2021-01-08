@@ -22,15 +22,25 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-   
-    - name: Get all SSM parameters
-      run: aws ssm describe-parameters
-   
+
     - name: Compile
       run: make compile
    
     - name: Run tests
       run: make test
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+        role-to-assume: arn:aws:iam::407242342205:role/centralized-users
+        role-duration-seconds: 1200
+        role-skip-session-tagging: true
+
+    - name: Get all SSM parameters
+      run: aws ssm describe-parameters
    
       #    - name: Fail trigger
       #run: exit13 # full stop
