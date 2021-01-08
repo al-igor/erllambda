@@ -47,9 +47,9 @@ jobs:
         #AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       with:
         ssm_parameter_list: |
-         /ci_params/_global/MYVAR2, # unsecure
-         /alertlogic/ci-test-repo/HELLO_WORLD, # unsecure
-         /ci/env_vars/1234/access_key_id # secure == "mynewpassword"
+         /ci_params/_global/MYVAR2,
+         /alertlogic/ci-test-repo/HELLO_WORLD,
+         /ci/env_vars/1234/access_key_id
         prefix: ALGA_ 
  
     - name: Printenv
