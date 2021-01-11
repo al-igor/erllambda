@@ -1,3 +1,3 @@
 FROM scratch
-COPY erllambda/ /
+COPY . /
 CMD ["whoami"]
