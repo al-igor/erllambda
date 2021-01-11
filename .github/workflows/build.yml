@@ -28,7 +28,7 @@ jobs:
       run: make test
 
     - name: Show bins
-      run: tree .
+      run: ls -lt .
 
       #    - name: Fail trigger
       #run: exit13 # full stop
