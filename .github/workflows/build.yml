@@ -89,8 +89,8 @@ jobs:
     - name: Checkout 3-rd party repo
       uses: actions/checkout@v2
       with:
-        repository: alertlogic/adpsync
-        path: adpsync
+        repository: kstaken/dockerfile-examples
+        path: kstaken
 
     - name: Display structure of downloaded files
       run: ls -R
