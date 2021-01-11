@@ -96,7 +96,7 @@ jobs:
         path: kstaken
 
     - name: Display structure of downloaded files
-      run: ls -R
+      run: ls -R ../
 
     - name: Build, tag, and push image to Amazon ECR
       id: build-image
