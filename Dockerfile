@@ -1,3 +1,3 @@
 FROM scratch
-COPY artifacts/ /
+COPY erllambda/ /
 CMD ["whoami"]
