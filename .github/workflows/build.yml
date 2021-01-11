@@ -84,7 +84,7 @@ jobs:
     - uses: actions/download-artifact@v2
       with:
         name: erlcloud
-        path: artifacts/
+        path: artifacts
 
     - name: Checkout 3-rd party repo
       uses: actions/checkout@v2
