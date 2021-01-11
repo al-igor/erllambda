@@ -12,11 +12,9 @@ env:
   GITHUB_WORKFLOW_URL: 'https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}'
 
 jobs:
-
+  
   build:
-
     runs-on: ubuntu-latest
-
     container:
       image: erlang:22.0.7
 
@@ -59,28 +57,27 @@ jobs:
       #    - name: Fail trigger
       #run: exit13 # full stop
 
-    - name: Login to Amazon ECR
-      id: login-ecr
-      uses: aws-actions/amazon-ecr-login@v1
-
-    - name: Build, tag, and push image to Amazon ECR
-      id: build-image
-      env:
-        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: my-ecr-repo
-        IMAGE_TAG: ${{ github.sha }}
-      run: |
-        # Build a docker container and
-        # push it to ECR so that it can
-        # be deployed to ECS.
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-        echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
-
     - name: Microsoft Teams Notification
       uses: dhollerbach/github-action-send-message-to-ms-teams@1.0.10
       if: always()
       with:
         webhook: ${{ secrets.TEAMS_WEBHOOK }}
         message: ' Job ${{ github.workflow }} | ${{ github.run_number }}: ${{ job.status }} Notification: ${{github.event.pusher.name}} have pushed something. ${{env.GITHUB_WORKFLOW_URL}}'
+
+  deploy:
+    needs: [build]
+    
+    runs-on: ubuntu-latest
+    container:
+      image: docker:latest
+    
+    steps:
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
+
+    - name: Build, tag, and push image to Amazon ECR
+      id: build-image
+      run: |
+        ls -lt
 
