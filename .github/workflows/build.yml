@@ -27,6 +27,9 @@ jobs:
     - name: Run tests
       run: make test
 
+    - name: Show bins
+      run: tree .
+
       #    - name: Fail trigger
       #run: exit13 # full stop
 
@@ -45,7 +48,6 @@ jobs:
       image: docker:latest
 
     steps:
-
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
