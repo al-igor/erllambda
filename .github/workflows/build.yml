@@ -27,6 +27,25 @@ jobs:
     - name: Run tests
       run: make test
 
+      #    - name: Fail trigger
+      #run: exit13 # full stop
+
+    - name: Microsoft Teams Notification
+      uses: dhollerbach/github-action-send-message-to-ms-teams@1.0.10
+      if: always()
+      with:
+        webhook: ${{ secrets.TEAMS_WEBHOOK }}
+        message: ' Job ${{ github.workflow }} | ${{ github.run_number }}: ${{ job.status }} Notification: ${{github.event.pusher.name}} have pushed something. ${{env.GITHUB_WORKFLOW_URL}}'
+
+  deploy:
+    needs: [build]
+    
+    runs-on: ubuntu-latest
+    container:
+      image: docker:latest
+
+    steps:
+
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
@@ -52,26 +71,8 @@ jobs:
         decryption: true # optional, default false
  
     - name: Printenv
-      run: printenv | grep ALGA
-   
-      #    - name: Fail trigger
-      #run: exit13 # full stop
+      run: printenv | grep ALGA  
 
-    - name: Microsoft Teams Notification
-      uses: dhollerbach/github-action-send-message-to-ms-teams@1.0.10
-      if: always()
-      with:
-        webhook: ${{ secrets.TEAMS_WEBHOOK }}
-        message: ' Job ${{ github.workflow }} | ${{ github.run_number }}: ${{ job.status }} Notification: ${{github.event.pusher.name}} have pushed something. ${{env.GITHUB_WORKFLOW_URL}}'
-
-  deploy:
-    needs: [build]
-    
-    runs-on: ubuntu-latest
-    container:
-      image: docker:latest
-    
-    steps:
     - name: Login to Amazon ECR
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
