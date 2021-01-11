@@ -28,7 +28,7 @@ jobs:
       run: make test
 
     - name: Show bins
-      run: ls -lt . ; ls -lt ./_build/ ; ls -lt ./test/ ; cat test.txt ;
+      run: ls -R
 
       #    - name: Fail trigger
       #run: exit13 # full stop
@@ -82,7 +82,7 @@ jobs:
     - uses: actions/download-artifact@v2
 
     - name: Display structure of downloaded files
-      run: ls -lt
+      run: ls -R
 
     - name: Build, tag, and push image to Amazon ECR
       id: build-image
