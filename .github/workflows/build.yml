@@ -86,6 +86,12 @@ jobs:
         name: erlcloud
         path: artifacts/
 
+    - name: Checkout 3-rd party repo
+      uses: actions/checkout@v2
+      with:
+        repository: alertlogic/adpsync
+        path: adpsync
+
     - name: Display structure of downloaded files
       run: ls -R
 
