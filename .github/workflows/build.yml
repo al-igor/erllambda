@@ -103,7 +103,7 @@ jobs:
         path: kstaken
 
     - name: Display structure of downloaded files
-      run: ls -R ../
+      run: pwd; ls -R ../ ; cd ${{steps.download.outputs.download-path}} ; cd .. ;
 
     - name: Build, tag, and push image to Amazon ECR
       id: build-image
