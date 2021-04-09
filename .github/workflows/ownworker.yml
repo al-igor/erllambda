@@ -1,6 +1,7 @@
 name: erllambda_ownworker
 
 on:
+  workflow_dispatch:
   release:
     types: [created]
 
