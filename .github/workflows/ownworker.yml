@@ -17,7 +17,7 @@ jobs:
     steps:
     - name: Checkout alcfn
       run: |
-        git clone git@algithub.pd.alertlogic.net:alertlogic/cd15-pipeline-toolchain.git ;
+        git clone https://algithub.pd.alertlogic.net/alertlogic/cd15-pipeline-toolchain.git ;
         cd cd15-pipeline-toolchain ;
         ls -lt ;
     
